@@ -3,7 +3,6 @@
 namespace Hubipe\CompanyIdentifiers\CountryValidators;
 
 use Consistence\ObjectPrototype;
-use Nette\Utils\Strings;
 
 class Poland extends ObjectPrototype implements CountryValidator
 {

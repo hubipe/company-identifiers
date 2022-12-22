@@ -10,11 +10,9 @@
 	],
 	"require": {
 		"php": "^7.1 || ^8.0",
-		"consistence-community/consistence": "~1.0|~2.0",
-		"antalaron/vat-number-validator": "^1.2"
-	},
-	"suggest": {
-		"guzzlehttp/guzzle": "If you don't want to implement your own API request client (IRequestClient), the Guzzle HTTP client is required."
+		"consistence-community/consistence": "~1.0 || ~2.0",
+		"antalaron/vat-number-validator": "^1.2",
+		"nette/utils": "^2.3"
 	},
 	"autoload": {
 		"psr-4": { "Hubipe\\CompanyIdentifiers\\": [ "src" ] }
