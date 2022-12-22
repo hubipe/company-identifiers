@@ -31,9 +31,9 @@ class Austria extends ObjectPrototype implements CountryValidator
 	public function isCompanyVatIdValid(string $vatId): bool
 	{
 		$vatId = $this->formatCompanyVatId($vatId);
-//		if (substr($vatId, 0, 3) !== 'ATU') {
-//			return FALSE;
-//		}
+		if (substr($vatId, 0, 3) !== 'ATU') {
+			return FALSE;
+		}
 		return EuropeanVatValidator::getInstance()->isVatValid($vatId);
 	}
 
