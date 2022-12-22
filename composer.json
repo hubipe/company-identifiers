@@ -1,0 +1,22 @@
+{
+	"name": "hubipe/company-identifiers",
+	"description": "Library ",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Petr Hubík",
+			"homepage": "http://hubik.net"
+		}
+	],
+	"require": {
+		"php": "^7.1 || ^8.0",
+		"consistence-community/consistence": "~1.0|~2.0",
+		"antalaron/vat-number-validator": "^1.2"
+	},
+	"suggest": {
+		"guzzlehttp/guzzle": "If you don't want to implement your own API request client (IRequestClient), the Guzzle HTTP client is required."
+	},
+	"autoload": {
+		"psr-4": { "Hubipe\\CompanyIdentifiers\\": [ "src" ] }
+	}
+}
