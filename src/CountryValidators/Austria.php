@@ -11,16 +11,16 @@ class Austria extends ObjectPrototype implements CountryValidator
 
 	public function isCompanyIdValid(string $id): bool
 	{
-		return preg_match('/^[Ff][Nn]\s*[1-9][0-9]{4,5}\s*[a-z]$/', trim($id)) === 1;
+		return preg_match('/^[Ff][Nn]\s*[1-9][0-9]{4,5}\s*[a-zA-Z]$/', trim($id)) === 1;
 	}
 
 	public function formatCompanyId(string $id): string
 	{
 		$matches = [];
-		if (!preg_match('/^[Ff][Nn]\s*(?P<num>[1-9][0-9]{4,5})\s*(?P<letter>[a-z])$/', $id, $matches)) {
+		if (!preg_match('/^[Ff][Nn]\s*(?P<num>[1-9][0-9]{4,5})\s*(?P<letter>[a-zA-Z])$/', $id, $matches)) {
 			return $id;
 		}
-		return 'FN ' . $matches['num'] . ' ' . $matches['letter'];
+		return 'FN ' . $matches['num'] . ' ' . strtolower($matches['letter']);
 	}
 
 	public function getCompanyIdentifier(string $id): string

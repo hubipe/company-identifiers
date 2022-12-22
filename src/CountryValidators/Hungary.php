@@ -11,16 +11,21 @@ class Hungary extends ObjectPrototype implements CountryValidator
 
 	public function isCompanyIdValid(string $id): bool
 	{
-		return preg_match('/^(\d{2})(\s*|-)(\d{2})(\s*|-)\d{6}$/', trim($id)) === 1;
+		// check if input comply with defined format
+		$matches = [];
+		if (!preg_match('/^(?P<vatNumber>\d{8})-(?P<vatType>[1-5])-(?P<regionCode>\d{2})$/', $this->formatCompanyId($id), $matches)) {
+			return FALSE;
+		}
+
+		// check if first part of the ID has the valid VAT number format
+		$vatId = 'HU' . $matches['vatNumber'];
+		return $this->isCompanyVatIdValid($vatId);
 	}
+
 
 	public function formatCompanyId(string $id): string
 	{
-		$matches = [];
-		if (!preg_match('/^(?P<court>\d{2})(\s*|-)(?P<legalForm>\d{2})(\s*|-)(?P<num>\d{6})$/', $id, $matches)) {
-			return $id;
-		}
-		return $matches['court'] . '-' . $matches['legalForm'] . '-' . $matches['num'];
+		return preg_replace('/[^\d\-]/', '', $id);
 	}
 
 	public function getCompanyIdentifier(string $id): string
