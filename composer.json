@@ -1,7 +1,19 @@
 {
 	"name": "hubipe/company-identifiers",
 	"description": "Library aims to validate national identifiers formats and VAT numbers formats of companies and business individuals.",
-	"keywords": ["company id","companies id","vat id","firmenbuchnummer","IČ","IČO","Handelsregisternummer","Adoszám","REGON","Matična številka"],
+	"keywords": [
+		"company id",
+		"companies id",
+		"vat id",
+		"firmenbuchnummer",
+		"IČ",
+		"IČO",
+		"Handelsregisternummer",
+		"Adoszám",
+		"REGON",
+		"Matična številka",
+		"OIB"
+	],
 	"license": "MIT",
 	"authors": [
 		{
