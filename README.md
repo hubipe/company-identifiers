@@ -8,7 +8,7 @@ The library contains methods to validate format of these business identifiers pl
 | country         | business identifier name | business identifier format   | check number       |
 | ----------------| -------------------------|------------------------------|--------------------|
 | Austria         | Firmenbuchnummer         | FN 123456a                   | :heavy_check_mark: |
-| Bulgaria        | ?                        | 123456789                    | :question:         |
+| Bulgaria        | ?                        | 123456789                    | :heavy_check_mark: |
 | Croatia         | ?                        | 12345678901                  | :x:                |
 | Czech Republic  | IČO                      | 12345678 or 7501011234       | :heavy_check_mark: |
 | Germany         | Handelsregisternummer    | HRA/HRB/GNR/PR/VR 123456A    | :x:                |
@@ -20,7 +20,7 @@ The library contains methods to validate format of these business identifiers pl
 * :heavy_check_mark: check number implemented
 * :x: the identifier does not contain the check number
 * :warning: identifier contain check number, the algorithm is not known by library
-* :question: identifier check number presence is uknown
+* :question: identifier check number presence is unknown
 
 The check number is not available in all formats or it has not been implemented yet. If you know the algorithm for the check number calculation
 and the library does not contain the check validation, feel free to create issue or PR.

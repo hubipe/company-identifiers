@@ -12,8 +12,7 @@ class Bulgaria extends ObjectPrototype implements CountryValidator
 	public function isCompanyIdValid(string $id): bool
 	{
 		$id = $this->formatCompanyId($id);
-
-		return preg_match('#^\d{9,10}?$#', $id) === 1;
+		return $this->isCompanyVatIdValid('BG' . $id);
 	}
 
 	public function formatCompanyId(string $id): string
