@@ -13,7 +13,7 @@ class Croatia extends ObjectPrototype implements CountryValidator
 	{
 		$id = $this->formatCompanyId($id);
 
-		if (!preg_match('/^[1-9]\d{10}$/', $id)) {
+		if (!preg_match('/^\d{11}$/', $id)) {
 			return FALSE;
 		}
 		return $this->isCompanyVatIdValid('HR' . $id);
