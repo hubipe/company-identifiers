@@ -36,7 +36,7 @@ class Austria extends ObjectPrototype implements CountryValidator
 		if (!preg_match('/^(FN\s*)?(?P<num>[1-9][0-9]{4,5})\s*(?P<letter>['. self::COMPANY_ID_CHECK_CHARACTERS .'])$/i', $id, $matches)) {
 			return $id;
 		}
-		return $matches['num'] . strtolower($matches['letter']);
+		return 'FN' . $matches['num'] . strtolower($matches['letter']);
 	}
 
 	public function getCompanyIdentifier(string $id): string
