@@ -12,6 +12,7 @@ The library contains methods to validate format of these business identifiers pl
 | Croatia         | OIB                      | 12345678901                  | :heavy_check_mark: |
 | Czech Republic  | IČO                      | 12345678 or 7501011234       | :heavy_check_mark: |
 | Germany         | Handelsregisternummer    | HRA/HRB/GNR/PR/VR 123456A    | :x:                |
+| Greece          | GEMI (Γ.Ε.Μ.Η.)          | 123456789012                 | :x:                |
 | Hungary         | Adoszám                  | 12345678-1-11                | :heavy_check_mark: |
 | Poland          | REGON                    | 123456789 or 12345678901234  | :heavy_check_mark: |
 | Slovakia        | IČO                      | 12345678                     | :heavy_check_mark: |
