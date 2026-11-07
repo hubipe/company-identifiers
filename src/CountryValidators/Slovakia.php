@@ -1,11 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Hubipe\CompanyIdentifiers\CountryValidators;
 
-use Consistence\ObjectPrototype;
-use Nette\Utils\Strings;
-
-class Slovakia extends ObjectPrototype implements CountryValidator
+class Slovakia implements CountryValidator
 {
 
 	use EuropeanVatFormatter;
@@ -21,7 +20,7 @@ class Slovakia extends ObjectPrototype implements CountryValidator
 		// checksum
 		$checksum = 0;
 		for ($i = 0; $i < 7; $i++) {
-			$checksum += $ic[$i] * (8 - $i);
+			$checksum += (int) $ic[$i] * (8 - $i);
 		}
 
 		$checksum = $checksum % 11;
@@ -40,7 +39,7 @@ class Slovakia extends ObjectPrototype implements CountryValidator
 
 	public function formatCompanyId(string $id): string
 	{
-		return Strings::padLeft(preg_replace('/\D+/', '', $id), 8, '0');
+		return str_pad((string) preg_replace('/\D+/', '', $id), 8, '0', STR_PAD_LEFT);
 	}
 
 	public function getCompanyIdentifier(string $id): string

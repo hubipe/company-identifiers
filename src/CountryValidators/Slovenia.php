@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Hubipe\CompanyIdentifiers\CountryValidators;
 
-use Consistence\ObjectPrototype;
-
-class Slovenia extends ObjectPrototype implements CountryValidator
+class Slovenia implements CountryValidator
 {
 
 	use EuropeanVatFormatter;
@@ -18,7 +18,7 @@ class Slovenia extends ObjectPrototype implements CountryValidator
 
 	public function formatCompanyId(string $id): string
 	{
-		return preg_replace('/\s+/', '', $id);
+		return (string) preg_replace('/\s+/', '', $id);
 	}
 
 	public function getCompanyIdentifier(string $id): string

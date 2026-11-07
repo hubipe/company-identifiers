@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Hubipe\CompanyIdentifiers\CountryValidators;
 
-use Consistence\ObjectPrototype;
-
-class Poland extends ObjectPrototype implements CountryValidator
+class Poland implements CountryValidator
 {
 
 	use EuropeanVatFormatter;
@@ -31,7 +31,7 @@ class Poland extends ObjectPrototype implements CountryValidator
 		$sum = 0;
 		$count = count($weights);
 		for ($i = 0; $i < $count; $i++) {
-			$sum += $id[$i] * $weights[$i];
+			$sum += (int) $id[$i] * $weights[$i];
 		}
 		$checkSum = $sum % 11;
 		if ($checkSum === 10) {
@@ -43,7 +43,7 @@ class Poland extends ObjectPrototype implements CountryValidator
 
 	public function formatCompanyId(string $id): string
 	{
-		return preg_replace('/\D+/', '', $id);
+		return (string) preg_replace('/\D+/', '', $id);
 	}
 
 	public function getCompanyIdentifier(string $id): string
