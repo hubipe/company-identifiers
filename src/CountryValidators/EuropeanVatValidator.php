@@ -1,46 +1,40 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Hubipe\CompanyIdentifiers\CountryValidators;
 
-use Antalaron\Component\VatNumberValidator\VatNumber;
-use Consistence\ObjectPrototype;
-use Symfony\Component\Validator\Validation;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Hubipe\CompanyIdentifiers\Vat\VatNumberChecker;
 
-class EuropeanVatValidator extends ObjectPrototype
+class EuropeanVatValidator
 {
 
-	/** @var static|null */
-	private static $instance = NULL;
+	private static ?self $instance = NULL;
 
-	/** @var ValidatorInterface */
-	private $validator;
+	private VatNumberChecker $checker;
 
 	private function __construct()
 	{
-		$this->validator = Validation::createValidator();
+		$this->checker = new VatNumberChecker();
 	}
 
 	public static function getInstance(): self
 	{
 		if (self::$instance === NULL) {
-			self::$instance = new static();
+			self::$instance = new self();
 		}
 		return self::$instance;
 	}
 
 	public function isVatValid(string $vat): bool
 	{
-		$formattedVat = $this->formatVat($vat);
-
-		$violations = $this->validator->validate($formattedVat, new VatNumber());
-		return count($violations) === 0;
+		return $this->checker->isValid($this->formatVat($vat));
 	}
 
 
 	public function formatVat(string $vat): string
 	{
-		return preg_replace('/(\s|-|\.)+/', '', strtoupper($vat));
+		return VatNumberChecker::normalize($vat);
 	}
 
 }

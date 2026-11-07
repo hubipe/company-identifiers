@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Hubipe\CompanyIdentifiers\CountryValidators;
 
-use Consistence\ObjectPrototype;
-
-class Greece extends ObjectPrototype implements CountryValidator
+class Greece implements CountryValidator
 {
 
 	use EuropeanVatFormatter;
@@ -18,12 +18,12 @@ class Greece extends ObjectPrototype implements CountryValidator
 
 	public function formatCompanyId(string $id): string
 	{
-		return preg_replace('/\D+/', '', $id);
+		return (string) preg_replace('/\D+/', '', $id);
 	}
 
 	public function getCompanyIdentifier(string $id): string
 	{
-		return preg_replace('/\s+/', '', $this->formatCompanyId($id));
+		return (string) preg_replace('/\s+/', '', $this->formatCompanyId($id));
 	}
 
 	public function isCompanyVatIdValid(string $vatId): bool

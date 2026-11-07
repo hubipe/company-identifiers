@@ -1,11 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Hubipe\CompanyIdentifiers\CountryValidators;
 
-use Consistence\ObjectPrototype;
-use Nette\Utils\Strings;
-
-class CzechRepublic extends ObjectPrototype implements CountryValidator
+class CzechRepublic implements CountryValidator
 {
 
 	use EuropeanVatFormatter;
@@ -21,7 +20,7 @@ class CzechRepublic extends ObjectPrototype implements CountryValidator
 		// checksum
 		$checksum = 0;
 		for ($i = 0; $i < 7; $i++) {
-			$checksum += $ic[$i] * (8 - $i);
+			$checksum += (int) $ic[$i] * (8 - $i);
 		}
 
 		$checksum = $checksum % 11;
@@ -40,7 +39,7 @@ class CzechRepublic extends ObjectPrototype implements CountryValidator
 
 	public function formatCompanyId(string $id): string
 	{
-		return Strings::padLeft(preg_replace('/\D+/', '', $id), 8, '0');
+		return str_pad((string) preg_replace('/\D+/', '', $id), 8, '0', STR_PAD_LEFT);
 	}
 
 	public function getCompanyIdentifier(string $id): string
@@ -74,14 +73,17 @@ class CzechRepublic extends ObjectPrototype implements CountryValidator
 			return FALSE;
 		}
 
-		[, $year, $month, $day, $ext, $control] = $matches;
+		[, $yearDigits, $monthDigits, $dayDigits, $ext, $control] = $matches;
+		$year = (int) $yearDigits;
+		$month = (int) $monthDigits;
+		$day = (int) $dayDigits;
 
 		if ($control === '') {
 			$year += $year < 54 ? 1900 : 1800;
 		}
 		else {
 			// kontrolní číslice
-			$mod = ($year . $month . $day . $ext) % 11;
+			$mod = (int) ($yearDigits . $monthDigits . $dayDigits . $ext) % 11;
 			if ($mod === 10) $mod = 0;
 			if ($mod !== (int)$control) {
 				return FALSE;

@@ -29,8 +29,37 @@ and the library does not contain the check validation, feel free to create issue
 Also if you know any other country or company ID/business individuals identifier formats/check digits algorithms, create an issue with link to
 relevant source or create a pull request.
 
+## VAT numbers
+
+The VAT number format and check digits are validated by `Hubipe\CompanyIdentifiers\Vat\VatNumberChecker`. Besides the countries above
+it can be used directly for VAT numbers of other countries:
+
+```php
+use Hubipe\CompanyIdentifiers\Vat\VatNumberChecker;
+
+(new VatNumberChecker())->isValid('CZ 255 966 41'); // true
+```
+
+The number is uppercased and whitespace, dashes and dots are removed before the validation. An empty number is considered valid.
+
+Supported prefixes: AT, BE, BG, CHE (Switzerland), CY, CZ, DE, DK, EE, EL (Greece), ES, EU, FI, FR, GB, HR, HU, IE, IT, LT, LU, LV,
+MT, NL, NO, PL, PT, RO, RS, RU, SE, SI, SK. For some formats (e.g. FR with letters, EU) only the format is validated.
+
+The VAT number schemes, check digit algorithms and test vectors were taken over from
+[antalaron/vat-number-validator](https://github.com/antalaron/vat-number-validator) v1.2.1
+(Copyright (c) 2017 Antal Áron, MIT License), which is based on [braemoor.co.uk](http://www.braemoor.co.uk/software/vat.shtml).
+
 ## Installation
+
+Requires PHP 8.1 or newer.
 
 ```
 composer require hubipe/company-identifiers
+```
+
+## Tests
+
+```
+composer install
+vendor/bin/phpunit
 ```

@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Hubipe\CompanyIdentifiers\CountryValidators;
 
-use Consistence\ObjectPrototype;
-
-class Austria extends ObjectPrototype implements CountryValidator
+class Austria implements CountryValidator
 {
 
 	private const COMPANY_ID_WEIGHTS = [6, 4, 14, 15, 10, 1];
@@ -41,7 +41,7 @@ class Austria extends ObjectPrototype implements CountryValidator
 
 	public function getCompanyIdentifier(string $id): string
 	{
-		return preg_replace('/\s+/', '', $this->formatCompanyId($id));
+		return (string) preg_replace('/\s+/', '', $this->formatCompanyId($id));
 	}
 
 	public function isCompanyVatIdValid(string $vatId): bool
