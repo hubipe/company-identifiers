@@ -62,4 +62,5 @@ composer require hubipe/company-identifiers
 ```
 composer install
 vendor/bin/phpunit
+vendor/bin/phpstan analyse
 ```
